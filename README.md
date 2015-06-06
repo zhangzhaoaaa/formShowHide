@@ -26,13 +26,13 @@
 * showValues()：返回提交元素name:value的json对象
 * combineData()：不传参数的话，即是当前注册的已显示的元素的name:value的json对象；传入json对象的话，即将当前显示的元素json值和传入的json对象整合，最后返回整合后的json对象
 * Model：传入注册显示的rule对象
-> FormShowHide.Model({ruleAll: [
+·FormShowHide.Model({ruleAll: [
             {id: elementId}
         ], rules: [
             {type: switchType, show: booleean, className: "submitRule", elements: [
                 {id: elementId},{name:elementName}
             ]}
-        ]}).toggleEle();
+        ]}).toggleEle();·
 
 ----------
 ##感谢
