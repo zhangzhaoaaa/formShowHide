@@ -2,7 +2,7 @@
     root.FormShowHide = factory({});
 }(this,function(FormShowHide){
     var model={};
-    FormShowHide.toggleEle=function(){
+    FormShowHide.toggleEle=function(){//元素显示
         var ruleShow=[];
         var ruleAllHide=[];
         for (var k=0,len=model.rules.length;k<len;k++){
@@ -35,7 +35,7 @@
         }
         model.ruleShow=ruleShow||[];
     };
-    FormShowHide.switchShow=function(key){
+    FormShowHide.switchShow=function(key){//页面切换事件
         for (var k=0,len=model.rules.length;k<len;k++){
             if (model.rules[k]["type"]===key){
                 model.rules[k]["show"]=true;
@@ -47,7 +47,7 @@
         }
         return this;
     };
-    FormShowHide.showValues=function(){
+    FormShowHide.showValues=function(){//获取提交表单元素，组成name:value的json对象
         var fields = $(".submitRule").serializeArray();
         var serializeObj={};
         var str=$(".submitRule").serialize();
@@ -64,14 +64,14 @@
         });
         return serializeObj;
     };
-    FormShowHide.combineData= function () {
+    FormShowHide.combineData= function () {//整合表单其他元素
         var retData = this.showValues()||{};
         for (var i= 0,len=arguments.length;i<len;i++){
             $.extend(retData,arguments[i]);
         }
         return retData;
     }
-    FormShowHide.Model = function(options) {
+    FormShowHide.Model = function(options) {//FormShowHide的模型对象
         var ops = options || (options = {});
         model = $.extend({},ops);
         return this;

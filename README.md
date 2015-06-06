@@ -1,92 +1,39 @@
-# [HTML5 Boilerplate](https://html5boilerplate.com)
+#FormShowHide
 
-[![Build Status](https://travis-ci.org/h5bp/html5-boilerplate.svg)](https://travis-ci.org/h5bp/html5-boilerplate)
-[![devDependency Status](https://david-dm.org/h5bp/html5-boilerplate/dev-status.svg)](https://david-dm.org/h5bp/html5-boilerplate#info=devDependencies)
+##背景
+在页面开发的过程中，我们经常会遇到根据不同参数或者状态，页面中的表单元素做出隐藏/显示的切换效果，最后提交这些显示出来的表单元素值，隐藏的元素不提交的效果。
 
-HTML5 Boilerplate is a professional front-end template for building
-fast, robust, and adaptable web apps or sites.
+##思路
+给切换显示的元素制定规则，有必显和切换显示表单元素两种规则，将表单的元素注册到规则中去，显示和隐藏时对元素标记，提交表单时，获取标记为提交状态的元素的值进行提交。
 
-This project is the product of many years of iterative development and
-combined community knowledge. It does not impose a specific development
-philosophy or framework, so you're free to architect your code in the
-way that you want.
+##设计
+我们约定每个表单元素外面都有一个父级元素作为容器，该容器默认样式为hideRule，即隐藏状态(display:none;)；元素显示时，将这个容器的样式remove掉，给该表单元素增加一个submitRule的样式作为标记，表单提交时根据此标记，抓取页面元素。
 
-* Homepage: [https://html5boilerplate.com](https://html5boilerplate.com)
-* Source: [https://github.com/h5bp/html5-boilerplate](https://github.com/h5bp/html5-boilerplate)
-* Twitter: [@h5bp](https://twitter.com/h5bp)
+##用法
+###属性
+* ruleAll:注册必显的表单元素
+* rules:注册不同规则下显示的元素
+* ruleAll的内容和rules里定义的elements是一样的内容
+* rules->type：切换的规则类型
+* rules->show:是否显示,true/false
+* rules->className:submitRule表示显示和提交,hideRule表示隐藏
+* rules->elements:当前规则下需要显示/隐藏的表单元素  
 
+----------
+###方法
+* switchShow(switchType)：点击切换按钮时触发切换操作
+* toggleEle()：元素显示
+* showValues()：返回提交元素name:value的json对象
+* combineData()：不传参数的话，即是当前注册的已显示的元素的name:value的json对象；传入json对象的话，即将当前显示的元素json值和传入的json对象整合，最后返回整合后的json对象
+* Model：传入注册显示的rule对象
+> FormShowHide.Model({ruleAll: [
+            {id: elementId}
+        ], rules: [
+            {type: switchType, show: booleean, className: "submitRule", elements: [
+                {id: elementId},{name:elementName}
+            ]}
+        ]}).toggleEle();
 
-## Quick start
-
-Choose one of the following options:
-
-1. Download the latest stable release from
-   [html5boilerplate.com](https://html5boilerplate.com/) or create a
-   custom build using [Initializr](http://www.initializr.com).
-2. Clone the git repo — `git clone
-   https://github.com/h5bp/html5-boilerplate.git` - and checkout the
-   [tagged release](https://github.com/h5bp/html5-boilerplate/releases)
-   you'd like to use.
-
-
-## Features
-
-* HTML5 ready. Use the new elements with confidence.
-* Designed with progressive enhancement in mind.
-* Includes:
-  * [`Normalize.css`](https://necolas.github.com/normalize.css/)
-    for CSS normalizations and common bug fixes
-  * [`jQuery`](https://jquery.com/) via CDN, with a local fallback
-  * A custom build of  [`Modernizr`](http://modernizr.com/) for feature
-    detection
-  * [`Apache Server Configs`](https://github.com/h5bp/server-configs-apache)
-    that, among other, improve the web site's performance and security
-* Placeholder CSS Media Queries.
-* Useful CSS helper classes.
-* Default print styles, performance optimized.
-* An optimized version of the Google Universal Analytics snippet.
-* Protection against any stray `console` statements causing JavaScript
-  errors in older browsers.
-* "Delete-key friendly." Easy to strip out parts you don't need.
-* Extensive inline and accompanying documentation.
-
-
-## Browser support
-
-* Chrome *(latest 2)*
-* Firefox *(latest 2)*
-* Internet Explorer 8+
-* Opera *(latest 2)*
-* Safari *(latest 2)*
-
-*This doesn't mean that HTML5 Boilerplate cannot be used in older browsers,
-just that we'll ensure compatibility with the ones mentioned above.*
-
-If you need legacy browser support (IE 6+, Firefox 3.6+, Safari 4+) you
-can use [HTML5 Boilerplate v4](https://github.com/h5bp/html5-boilerplate/tree/v4),
-but is no longer actively developed.
-
-
-## Documentation
-
-Take a look at the [documentation table of contents](dist/doc/TOC.md).
-This documentation is bundled with the project, which makes it readily
-available for offline reading and provides a useful starting point for
-any documentation you want to write about your project.
-
-
-## Contributing
-
-Hundreds of developers have helped make the HTML5 Boilerplate what it is
-today. Anyone and everyone is welcome to [contribute](CONTRIBUTING.md),
-however, if you decide to get involved, please take a moment to review
-the [guidelines](CONTRIBUTING.md):
-
-* [Bug reports](CONTRIBUTING.md#bugs)
-* [Feature requests](CONTRIBUTING.md#features)
-* [Pull requests](CONTRIBUTING.md#pull-requests)
-
-
-## License
-
-The code is available under the [MIT license](LICENSE.txt).
+----------
+##感谢
+感谢您能够驻足我的拙劣代码，这个只是一个想法。
