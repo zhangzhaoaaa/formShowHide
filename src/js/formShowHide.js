@@ -24,10 +24,10 @@
         ruleShow=ruleShow.concat(model.ruleAll);//concat rule and ruleAll show elements
         for (var i=0,lenx=ruleShow.length;i<lenx;i++){
             if (ruleShow[i]["id"]){
-               console.log(ruleShow[i]["id"]);
+               //console.log(ruleShow[i]["id"]);
                 $('#'+ruleShow[i]["id"]).addClass("submitRule").parent().removeClass("hideRule");
             }else if (ruleShow[i]["name"]){
-                console.log(ruleShow[i]["id"]);
+               // console.log(ruleShow[i]["id"]);
                 $("input[name="+ruleShow[i]["name"]+"]").each(function () {
                     $(this).addClass("submitRule").parent().removeClass("hideRule");
                 });
