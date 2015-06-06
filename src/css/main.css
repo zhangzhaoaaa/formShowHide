@@ -1,0 +1,11 @@
+#main{
+    text-align: center;
+}
+p{
+    margin: 5px;
+}
+p input{
+    margin: 5px;
+}
+.submitRule{display: "";}
+.hideRule{display: none;}

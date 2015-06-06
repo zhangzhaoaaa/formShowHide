@@ -1,0 +1,71 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Place favicon.ico in the root directory -->
+
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+<div id="main">
+    <p><input  id="oneBtn" value="oneValue" name="radioType" checked="checked" type="radio">oneBtn</input><input value="twoValue" name="radioType" id="twoBtn" type="radio">twoBtn</input></p>
+    <form action="" id="f">
+        <div class="hideRule"><input type="text" id="userName" name="userName" value="name" ></div>
+        <div class="hideRule"><input type="text" id="age" name="age" value="age" ></div>
+        <div class="hideRule"><input type="text" id="email" name="email" value="email" ></div>
+        <div class="hideRule"><input type="text" id="birthDay" name="birthDay" value="birthDay" ></div>
+        <div class="hideRule">
+            <label for="male">Male</label><input type="radio" id="male" name="sex" value="Male" >
+            <label for="female">Female</label><input type="radio" id="female" name="sex" value="Female" >
+        </div>
+        <div class="hideRule">
+            <label for="beiJing">Beijing</label><input type="checkbox" id="beiJing" name="location" value="BeiJing" >
+            <label for="shangHai">ShangHai</label><input type="checkbox" id="shangHai" name="location" value="ShangHai" >
+            <label for="shenZhen">ShenZhen</label><input type="checkbox" id="shenZhen" name="location" value="ShenZhen" >
+        </div>
+        <div class="hideRule"><select name="postCode" id="postCode">
+        <option value="1">111111</option>
+        <option value="2">222222</option>
+        <option value="3">333333</option>
+        <option value="4">444444</option>
+        <option value="5">555555</option>
+    </select></div>
+
+        <p><button id="submit" type="button">submit</button></p>
+    </form>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/formShowHide.js"></script>
+<script>
+    $(function(){
+        FormShowHide.Model({ruleAll: [
+            {id: "userName"},
+            {id: "age"},
+            {id: "postCode"}
+        ], rules: [
+            {type: "oneValue", show: true, className: "submitRule", elements: [
+                {id: "email"},{name:"sex"}
+            ]},
+            {type: "twoValue", show: false, className: "hideRule", elements: [
+                {id: "birthDay"},{name: "location"}
+            ]}
+        ]}).toggleEle();
+        $('#submit').click(function(){
+            var params = {cat:"1",dog:"2",tiger:"3"};
+            var submit = FormShowHide.combineData();
+            console.log(submit);
+           // var submit2 = FormShowHide.combineData(params);
+           // console.log(submit2);
+        });
+        $('p input[type=radio]').click(function(){
+            FormShowHide.switchShow($(this).val()).toggleEle();
+        });
+    });
+</script>
+</body>
+</html>
